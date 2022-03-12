@@ -14,21 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r message=FALSE}
-# R Setup
-library(zoo)
-library(dplyr)
-library(plotly)
-library(ds303pkg)
-```
-
 ### Background
 
 I've been following COVID cases, deaths, and hospitalizations in Michigan & the US closely since the beginning of the pandemic. There's lots of data to work with, which provides lots of opportunities for data analysis and visualization. This particular visualization is quite simple, and plots cases and deaths as a function of time. Whats unique about this plot is that it can show how deaths usually follow cases by 3 or so weeks.
 
 The link for the data is scraped using Python, downloaded and cleaned/massaged in R, stored in the `ds303pkg` package, and visualized in R's Plotly interface
 
-```{r get-excel}
+```{r get-excel, message=FALSE}
+library(ds303pkg)
 data("mi_covid_data")
 ```
 
@@ -38,7 +31,7 @@ This data set contains cumulative cases, new cases, cumulative deaths, and new d
 ### Initial Data Visualization:
 
 ```{r message=FALSE}
-plot_ly(
+plotly::plot_ly(
   mi_covid_data,
   x = ~Date,
   y = ~Cases
@@ -50,74 +43,74 @@ plot_ly(
 
 ```{r}
 mi_cases_by_day <- mi_covid_data %>%
-  mutate(
-    cases_ma = rollapply(Cases, 7, mean, align = "center", fill = 0),
-    deaths_ma = rollapply(Deaths, 7, mean, align = "center", fill = 0)
+  dplyr::mutate(
+    cases_ma = zoo::rollapply(Cases, 7, mean, align = "center", fill = 0),
+    deaths_ma = zoo::rollapply(Deaths, 7, mean, align = "center", fill = 0)
   )
 ```
 
 ```{r message=FALSE}
 ay <- list(overlaying = "y", side = "right", title = "Deaths")
-plot_ly(mi_cases_by_day, x = ~Date) %>%
+plotly::plot_ly(mi_cases_by_day, x = ~Date) %>%
   # Cases
-  add_trace(
+  plotly::add_trace(
     y = ~Cases, alpha = .6, name = "Cases", type = "scatter",
     color = I("coral1"), mode = "markers"
   ) %>%
   # Cases MA
-  add_lines(
+  plotly::add_lines(
     y = ~cases_ma, alpha = .8, name = "Cases MA", mode = "markers",
     color = I("coral1")
   ) %>%
   # Deaths
-  add_trace(
+  plotly::add_trace(
     name = "Deaths", yaxis = "y2", alpha = .15, y = ~Deaths, x = ~Date,
     color = I("darkorchid1"), type = "scatter", mode = "markers"
   ) %>%
   # Deaths MA
-  add_lines(
+  plotly::add_lines(
     name = "Deaths MA", yaxis = "y2", y = ~deaths_ma, x = ~Date,
     color = I("darkorchid1"), alpha = .8 / 4, mode = "markers"
   ) %>%
-  layout(
+  plotly::layout(
     title = "Michigan COVID Cases/Deaths<br>With 7-day Moving Average",
     yaxis2 = ay, legend = list(bgcolor = "rgba(0,0,0,0)"),
     margin = list(r = 50, t = 50)
   ) %>%
-  rangeslider()
+  plotly::rangeslider()
 ```
 
 ### Log 10 chart
 
 ```{r}
 ay <- list(overlaying = "y", side = "right", title = "Deaths")
-plot_ly(mi_cases_by_day, x = ~Date) %>%
+plotly::plot_ly(mi_cases_by_day, x = ~Date) %>%
   # Cases
-  add_trace(
+  plotly::add_trace(
     y = ~ log10(Cases), alpha = .6, name = "Cases", type = "scatter",
     color = I("coral1"), mode = "markers"
   ) %>%
   # Cases MA
-  add_lines(
+  plotly::add_lines(
     y = ~ log10(cases_ma), alpha = .8, name = "Cases MA", mode = "markers",
     color = I("coral1")
   ) %>%
   # Deaths
-  add_trace(
+  plotly::add_trace(
     name = "Deaths", yaxis = "y2", alpha = .15, y = ~ log10(Deaths), x = ~Date,
     color = I("darkorchid1"), type = "scatter", mode = "markers"
   ) %>%
   # Deaths MA
-  add_lines(
+  plotly::add_lines(
     name = "Deaths MA", yaxis = "y2", y = ~ log10(deaths_ma), x = ~Date,
     color = I("darkorchid1"), alpha = .8 / 4, mode = "markers"
   ) %>%
-  layout(
+  plotly::layout(
     title = "Michigan COVID Cases/Deaths<br>With 7-day Moving Average",
     yaxis2 = ay, legend = list(bgcolor = "rgba(0,0,0,0)"),
     margin = list(r = 50, t = 50)
   ) %>%
-  rangeslider()
+  plotly::rangeslider()
 ```
 
 

@@ -13,7 +13,17 @@ Depends:
     dplyr,
     R (>= 2.10)
 Suggests: 
-    testthat (>= 3.0.0)
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    zoo,
+    plotly,
+    lubridate,
+    gginnards,
+    patchwork,
+    reticulate,
+    rlang
 Config/testthat/edition: 3
 LazyData: true
 URL: https://adamddh.github.io/ds303pkg
+VignetteBuilder: knitr

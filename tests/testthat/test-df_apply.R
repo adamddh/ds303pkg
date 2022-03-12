@@ -17,11 +17,11 @@ test_that(
   {
     expect_equal(
       test_data |> df_apply(round, is.numeric),
-      test_data |> mutate(double = c(95, 99, 97, 89, 90, 95, 98))
+      test_data |> dplyr::mutate(double = c(95, 99, 97, 89, 90, 95, 98))
     )
     expect_equal(
       test_data |> df_apply(tolower, is.character),
-      test_data |> mutate(character = tolower(LETTERS[1L:n]))
+      test_data |> dplyr::mutate(character = tolower(LETTERS[1L:n]))
     )
   }
 )
@@ -32,7 +32,7 @@ test_that(
     expect_equal(
       test_data |> df_apply(round, is.numeric, digits = 2),
       test_data |>
-        mutate(double = c(94.52, 99.01, 96.92, 89.00, 89.57, 94.57, 98.33))
+        dplyr::mutate(double = c(94.52, 99.01, 96.92, 89.00, 89.57, 94.57, 98.33))
     )
   }
 )
@@ -42,14 +42,14 @@ test_that(
   {
     expect_equal(
       test_data |> df_apply(mean, is.numeric),
-      test_data |> mutate(
+      test_data |> dplyr::mutate(
         integer = mean(test_data$integer),
         double = mean(test_data$double)
       )
     )
     expect_equal(
       test_data |> df_apply(min, is.numeric),
-      test_data |> mutate(
+      test_data |> dplyr::mutate(
         integer = min(test_data$integer),
         double = min(test_data$double)
       )
@@ -62,12 +62,22 @@ test_that(
   {
     expect_equal(
       test_data |> df_apply(round, is.numeric, as.factor, digits = -1),
-      test_data |> mutate(
+      test_data |> dplyr::mutate(
         double    = c(90, 100, 100, 90, 90, 90, 100),
         integer   = c(0, 0, 10, 20, 20, 40, 50),
         character = as.factor(LETTERS[1L:n]),
         logical   = as.factor(rep(c(TRUE, FALSE), length.out = n))
       )
+    )
+  }
+)
+
+test_that(
+  "5: df_apply all default arguments",
+  {
+    expect_equal(
+      test_data |> df_apply(round),
+      test_data |> dplyr::mutate(double = round(double))
     )
   }
 )

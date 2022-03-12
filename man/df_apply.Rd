@@ -26,7 +26,7 @@ Apply a function to qualifying columns in a data frame, a different function oth
 \examples{
 n <- 7L
 test_data <-
- data.frame(
+ dplyr::tibble(
    double     = rnorm(n, 100, 10),
    integer    = (1L:n) * (1L:n),
    character  = LETTERS[1L:n],

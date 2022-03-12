@@ -1,4 +1,7 @@
-#' Apply a function to qualifying columns in a data frame, a different function otherwise
+#' df_apply
+#'
+#' Apply a function to qualifying columns in a data frame,
+#' a different function otherwise
 #'
 #' @param .data Data frame containing columns to apply functions to
 #' @param .f Function to apply to columns that fit .condition()
@@ -15,16 +18,15 @@
 #' @examples
 #' n <- 7L
 #' test_data <-
-#'  dplyr::tibble(
-#'    double     = rnorm(n, 100, 10),
-#'    integer    = (1L:n) * (1L:n),
-#'    character  = LETTERS[1L:n],
-#'    factor     = factor(letters[1L:n]),
-#'    logical    = rep(c(TRUE, FALSE), length.out = n)
-#'  )
+#'   dplyr::tibble(
+#'     double     = rnorm(n, 100, 10),
+#'     integer    = (1L:n) * (1L:n),
+#'     character  = LETTERS[1L:n],
+#'     factor     = factor(letters[1L:n]),
+#'     logical    = rep(c(TRUE, FALSE), length.out = n)
+#'   )
 #' df_apply(test_data, round, is.numeric, I, digits = 2)
 df_apply <- function(.data, .f, .condition, .else = function(x) x, ...) {
-  .data |> purrr::map_df(function(x) if (.condition(x)) .f(x, ...) else .else(x))
+  .data |>
+    purrr::map_df(function(x) if (.condition(x)) .f(x, ...) else .else(x))
 }
-
-

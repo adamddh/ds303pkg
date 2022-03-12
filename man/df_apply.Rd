@@ -2,7 +2,7 @@
 % Please edit documentation in R/df_apply.R
 \name{df_apply}
 \alias{df_apply}
-\title{Apply a function to qualifying columns in a data frame, a different function otherwise}
+\title{df_apply}
 \usage{
 df_apply(.data, .f, .condition, .else = function(x) x, ...)
 }
@@ -21,17 +21,18 @@ df_apply(.data, .f, .condition, .else = function(x) x, ...)
 A Data frame with the columns changed as specified.
 }
 \description{
-Apply a function to qualifying columns in a data frame, a different function otherwise
+Apply a function to qualifying columns in a data frame,
+a different function otherwise
 }
 \examples{
 n <- 7L
 test_data <-
- dplyr::tibble(
-   double     = rnorm(n, 100, 10),
-   integer    = (1L:n) * (1L:n),
-   character  = LETTERS[1L:n],
-   factor     = factor(letters[1L:n]),
-   logical    = rep(c(TRUE, FALSE), length.out = n)
- )
+  dplyr::tibble(
+    double     = rnorm(n, 100, 10),
+    integer    = (1L:n) * (1L:n),
+    character  = LETTERS[1L:n],
+    factor     = factor(letters[1L:n]),
+    logical    = rep(c(TRUE, FALSE), length.out = n)
+  )
 df_apply(test_data, round, is.numeric, I, digits = 2)
 }

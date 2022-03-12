@@ -18,11 +18,6 @@ Suggests:
     testthat (>= 3.0.0),
     zoo,
     plotly,
-    lubridate,
-    gginnards,
-    patchwork,
-    reticulate,
-    rlang
 Config/testthat/edition: 3
 LazyData: true
 URL: https://adamddh.github.io/ds303pkg

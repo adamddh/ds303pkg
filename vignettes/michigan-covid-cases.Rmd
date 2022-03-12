@@ -15,20 +15,8 @@ knitr::opts_chunk$set(
 # R Setup
 library(zoo)
 library(dplyr)
-library(rlang)
 library(plotly)
 library(ds303pkg)
-library(lubridate)
-library(gginnards)
-library(patchwork)
-# Python Setup
-library(reticulate)
-if (!py_module_available("bs4")) py_install("bs4")
-if (!py_module_available("urllib")) py_install("urllib")
-if (!py_module_available("pandas")) py_install("pandas")
-if (!py_module_available("datetime")) py_install("datetime")
-if (!py_module_available("openpyxl")) py_install("openpyxl")
-py_run_string("import pandas as pd; pd.options.display.max_columns = None")
 ```
 
 ### Background

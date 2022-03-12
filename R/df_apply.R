@@ -1,9 +1,9 @@
 #' Apply a function to qualifying columns in a data frame, a different function otherwise
 #'
-#' @param .data Data frame to apply functions to
-#' @param .f Function to apply to columns that fit .condition
+#' @param .data Data frame containing columns to apply functions to
+#' @param .f Function to apply to columns that fit .condition()
 #' @param .condition Condition to check to apply .f()
-#' @param .else Function to apply to columns that do NOT fit .condition
+#' @param .else Function to apply to columns that do NOT fit .condition()
 #' @param ... Additional arguments to be passed to .f()
 #'
 #' @return A Data frame with the columns changed as specified.

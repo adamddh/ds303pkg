@@ -4,16 +4,16 @@
 \alias{df_apply}
 \title{Apply a function to qualifying columns in a data frame, a different function otherwise}
 \usage{
-df_apply(.data, .f, .condition, .else = I, ...)
+df_apply(.data, .f, .condition, .else = function(x) x, ...)
 }
 \arguments{
-\item{.data}{Data frame to apply functions to}
+\item{.data}{Data frame containing columns to apply functions to}
 
-\item{.f}{Function to apply to columns that fit .condition}
+\item{.f}{Function to apply to columns that fit .condition()}
 
 \item{.condition}{Condition to check to apply .f()}
 
-\item{.else}{Function to apply to columns that do NOT fit .condition}
+\item{.else}{Function to apply to columns that do NOT fit .condition()}
 
 \item{...}{Additional arguments to be passed to .f()}
 }

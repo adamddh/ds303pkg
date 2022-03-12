@@ -12,7 +12,6 @@ A data frame with 741 rows and 5 variables:
 \item{Deaths}{Number of confirmed COVID deaths in Michigan for that Date}
 \item{Cases_MA}{7-day moving average of Cases}
 \item{Deaths_MA}{7-day moving average of Deaths}
-...
 }
 }
 \source{
@@ -25,5 +24,9 @@ mi_covid_data
 A dataset containing cases and death counts for each date since the
 pandemic started in michigan, as well as moving averages for both cases and
 deaths
+}
+\examples{
+plot(mi_covid_data$Date, mi_covid_data$Cases)
+mean_deaths_per_day <- mean(mi_covid_data$Deaths)
 }
 \keyword{datasets}

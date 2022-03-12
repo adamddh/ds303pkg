@@ -4,7 +4,7 @@
 \alias{df_apply}
 \title{df_apply}
 \usage{
-df_apply(.data, .f, .condition, .else = function(x) x, ...)
+df_apply(.data, .f, .condition = is.numeric, .else = function(x) x, ...)
 }
 \arguments{
 \item{.data}{Data frame containing columns to apply functions to}

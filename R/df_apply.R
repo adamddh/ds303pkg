@@ -25,8 +25,7 @@
 #'     factor     = factor(letters[1L:n]),
 #'     logical    = rep(c(TRUE, FALSE), length.out = n)
 #'   )
-#' df_apply(test_data, round, is.numeric, I, digits = 2)
-df_apply <- function(.data, .f, .condition, .else = function(x) x, ...) {
+df_apply <- function(.data, .f, .condition = is.numeric,
   .data |>
     purrr::map_df(function(x) if (.condition(x)) .f(x, ...) else .else(x))
 }

@@ -1,0 +1,10 @@
+Package: ds303pkg
+Title: Package for Data-303 submission at Calvin University
+Version: 0.0.0.9000
+Authors@R: 
+    person("Adam", "DenHaan", , "add22@calvin.edu", role = c("aut", "cre"))
+Description: Package contains a function to apply a function to a numerical row of data in a data frame, and a different function if not numerical. Also conatins the data from a previous plotly project, and the plotly presenation itself. 
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

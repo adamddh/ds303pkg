@@ -34,5 +34,8 @@ test_data <-
     factor     = factor(letters[1L:n]),
     logical    = rep(c(TRUE, FALSE), length.out = n)
   )
-df_apply(test_data, round, is.numeric, I, digits = 2)
+df_apply(test_data, round, digits = -1)
+test_data |> df_apply(mean, is.numeric)
+test_data |> df_apply(tolower, is.character)
+test_data |> df_apply(round, is.numeric, as.factor, digits = -1)
 }

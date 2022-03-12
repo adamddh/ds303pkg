@@ -12,6 +12,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+```
+
+```{r message=FALSE}
 # R Setup
 library(zoo)
 library(dplyr)
@@ -23,7 +26,7 @@ library(ds303pkg)
 
 I've been following COVID cases, deaths, and hospitalizations in Michigan & the US closely since the beginning of the pandemic. There's lots of data to work with, which provides lots of opportunities for data analysis and visualization. This particular visualization is quite simple, and plots cases and deaths as a function of time. Whats unique about this plot is that it can show how deaths usually follow cases by 3 or so weeks.
 
-The link for the data is scraped using Python, downloaded using R, cleaned/massaged in Python, and visualized in R's Plotly interface
+The link for the data is scraped using Python, downloaded and cleaned/massaged in R, stored in the `ds303pkg` package, and visualized in R's Plotly interface
 
 ```{r get-excel}
 data("mi_covid_data")
@@ -55,22 +58,30 @@ mi_cases_by_day <- mi_covid_data %>%
 
 ```{r message=FALSE}
 ay <- list(overlaying = "y", side = "right", title = "Deaths")
-plot_ly(mi_cases_by_day,x = ~Date) %>% 
+plot_ly(mi_cases_by_day, x = ~Date) %>%
   # Cases
-  add_trace(y = ~Cases, alpha = .6, name = "Cases", type = "scatter",
-            color = I("coral1"), mode = 'markers') %>%
+  add_trace(
+    y = ~Cases, alpha = .6, name = "Cases", type = "scatter",
+    color = I("coral1"), mode = "markers"
+  ) %>%
   # Cases MA
-  add_lines(y = ~cases_ma, alpha = .8, name = "Cases MA", mode = 'markers',
-            color = I("coral1")) %>%
+  add_lines(
+    y = ~cases_ma, alpha = .8, name = "Cases MA", mode = "markers",
+    color = I("coral1")
+  ) %>%
   # Deaths
-  add_trace(name = "Deaths", yaxis = "y2", alpha = .15, y = ~Deaths, x = ~Date,
-            color = I("darkorchid1"), type = "scatter", mode = 'markers') %>%
+  add_trace(
+    name = "Deaths", yaxis = "y2", alpha = .15, y = ~Deaths, x = ~Date,
+    color = I("darkorchid1"), type = "scatter", mode = "markers"
+  ) %>%
   # Deaths MA
-  add_lines(name = "Deaths MA", yaxis = "y2", y = ~deaths_ma, x = ~Date,
-            color = I("darkorchid1"), alpha = .8/4, mode = 'markers') %>%
+  add_lines(
+    name = "Deaths MA", yaxis = "y2", y = ~deaths_ma, x = ~Date,
+    color = I("darkorchid1"), alpha = .8 / 4, mode = "markers"
+  ) %>%
   layout(
     title = "Michigan COVID Cases/Deaths<br>With 7-day Moving Average",
-    yaxis2 = ay, legend = list(bgcolor = 'rgba(0,0,0,0)'),
+    yaxis2 = ay, legend = list(bgcolor = "rgba(0,0,0,0)"),
     margin = list(r = 50, t = 50)
   ) %>%
   rangeslider()
@@ -80,22 +91,30 @@ plot_ly(mi_cases_by_day,x = ~Date) %>%
 
 ```{r}
 ay <- list(overlaying = "y", side = "right", title = "Deaths")
-plot_ly(mi_cases_by_day,x = ~Date) %>% 
+plot_ly(mi_cases_by_day, x = ~Date) %>%
   # Cases
-  add_trace(y = ~log10(Cases), alpha = .6, name = "Cases", type = "scatter",
-            color = I("coral1"), mode = 'markers') %>%
+  add_trace(
+    y = ~ log10(Cases), alpha = .6, name = "Cases", type = "scatter",
+    color = I("coral1"), mode = "markers"
+  ) %>%
   # Cases MA
-  add_lines(y = ~log10(cases_ma), alpha = .8, name = "Cases MA", mode = 'markers',
-            color = I("coral1")) %>%
+  add_lines(
+    y = ~ log10(cases_ma), alpha = .8, name = "Cases MA", mode = "markers",
+    color = I("coral1")
+  ) %>%
   # Deaths
-  add_trace(name = "Deaths", yaxis = "y2", alpha = .15, y = ~log10(Deaths), x = ~Date,
-            color = I("darkorchid1"), type = "scatter", mode = 'markers') %>%
+  add_trace(
+    name = "Deaths", yaxis = "y2", alpha = .15, y = ~ log10(Deaths), x = ~Date,
+    color = I("darkorchid1"), type = "scatter", mode = "markers"
+  ) %>%
   # Deaths MA
-  add_lines(name = "Deaths MA", yaxis = "y2", y = ~log10(deaths_ma), x = ~Date,
-            color = I("darkorchid1"), alpha = .8/4, mode = 'markers') %>%
+  add_lines(
+    name = "Deaths MA", yaxis = "y2", y = ~ log10(deaths_ma), x = ~Date,
+    color = I("darkorchid1"), alpha = .8 / 4, mode = "markers"
+  ) %>%
   layout(
     title = "Michigan COVID Cases/Deaths<br>With 7-day Moving Average",
-    yaxis2 = ay, legend = list(bgcolor = 'rgba(0,0,0,0)'),
+    yaxis2 = ay, legend = list(bgcolor = "rgba(0,0,0,0)"),
     margin = list(r = 50, t = 50)
   ) %>%
   rangeslider()

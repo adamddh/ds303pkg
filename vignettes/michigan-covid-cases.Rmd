@@ -22,7 +22,7 @@ The link for the data is scraped using Python, downloaded and cleaned/massaged i
 
 ```{r get-excel, message=FALSE}
 library(ds303pkg)
-data("mi_covid_data")
+data("mi_covid")
 ```
 
 This data set contains cumulative cases, new cases, cumulative deaths, and new deaths for each county for each date in roughly the last two years. For my visualization, I simply want total cases and deaths in the state, so the data is grouped by date and deaths and cases are summed. 
@@ -32,7 +32,7 @@ This data set contains cumulative cases, new cases, cumulative deaths, and new d
 
 ```{r message=FALSE}
 plotly::plot_ly(
-  mi_covid_data,
+  mi_covid,
   x = ~Date,
   y = ~Cases
 )
@@ -42,7 +42,7 @@ plotly::plot_ly(
 
 
 ```{r}
-mi_cases_by_day <- mi_covid_data %>%
+mi_cases_by_day <- mi_covid %>%
   dplyr::mutate(
     cases_ma = zoo::rollapply(Cases, 7, mean, align = "center", fill = 0),
     deaths_ma = zoo::rollapply(Deaths, 7, mean, align = "center", fill = 0)

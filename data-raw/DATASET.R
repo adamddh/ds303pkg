@@ -1,6 +1,6 @@
 ## code to prepare `DATASET` dataset goes here
 
-mi_covid_data <- readxl::read_excel("./data-raw/data.xlsx") |>
+mi_covid <- readxl::read_excel("./data-raw/data.xlsx") |>
   dplyr::group_by(Date) |>
   dplyr::summarise(
     Cases = sum(Cases),
@@ -13,4 +13,4 @@ mi_covid_data <- readxl::read_excel("./data-raw/data.xlsx") |>
     Deaths_MA = zoo::rollapply(Deaths, 7, mean, align = "center", fill = 0)
   )
 
-usethis::use_data(mi_covid_data, mi_covid_data, overwrite = TRUE)
+usethis::use_data(mi_covid, mi_covid, overwrite = TRUE)

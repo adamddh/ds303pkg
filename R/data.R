@@ -13,7 +13,7 @@
 #'   \item{Deaths_MA}{7-day moving average of Deaths}
 #'   }
 #' @examples
-#' plot(mi_covid_data$Date, mi_covid_data$Cases)
-#' mean_deaths_per_day <- mean(mi_covid_data$Deaths)
+#' plot(mi_covid$Date, mi_covid$Cases)
+#' mean_deaths_per_day <- mean(mi_covid$Deaths)
 #' @source \url{https://michigan.gov/documents/coronavirus/Cases_and_Deaths_by_County_and_by_Date_of_Symptom_Onset_or_by_Date_of_Death2022-03-11_749803_7.xlsx}
-"mi_covid_data"
+"mi_covid"

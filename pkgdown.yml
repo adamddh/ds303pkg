@@ -3,7 +3,7 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   michigan-covid-cases: michigan-covid-cases.html
-last_built: 2022-03-13T00:12Z
+last_built: 2022-03-13T22:52Z
 urls:
   reference: https://adamddh.github.io/ds303pkg/reference
   article: https://adamddh.github.io/ds303pkg/articles

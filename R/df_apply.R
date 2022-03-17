@@ -29,8 +29,7 @@
 #' test_data |> df_apply(mean, is.numeric)
 #' test_data |> df_apply(tolower, is.character)
 #' test_data |> df_apply(round, is.numeric, as.factor, digits = -1)
-df_apply <- function(.data, .f, .condition = is.numeric,
-                     .else = function(x) x, ...) {
+df_apply <- function(.data, .f, .condition = is.numeric, .else = identity, ...) {
   .data |>
     purrr::map_df(function(x) if (.condition(x)) .f(x, ...) else .else(x))
 }

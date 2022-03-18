@@ -25,6 +25,7 @@
 #'     factor     = factor(letters[1L:n]),
 #'     logical    = rep(c(TRUE, FALSE), length.out = n)
 #'   )
+#' test_data
 #' df_apply(test_data, round, digits = -1)
 #' test_data |> df_apply(mean, is.numeric)
 #' test_data |> df_apply(tolower, is.character)

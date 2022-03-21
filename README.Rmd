@@ -19,7 +19,9 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of ds303pkg is to fulfill an assignment for Calvin's Spring 2022 
-Data-303 class
+Data-303 class.
+
+The deployed site can be found [here](https://adamddh.github.io/ds303pkg/).
 
 ## Installation
 

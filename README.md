@@ -6,8 +6,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ds303pkg is to fulfill assignment for Calvin’s Spring 2022
-Data-303 class
+The goal of ds303pkg is to fulfill an assignment for Calvin’s Spring
+2022 Data-303 class.
+
+The deployed site can be found
+[here](https://adamddh.github.io/ds303pkg/).
 
 ## Installation
 
